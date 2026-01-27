@@ -40,6 +40,6 @@
     </div>
 @endsection
 
-@push('scripts')
-    <script>alter('test')</script>
-@endpush
+{{--@push('scripts')--}}
+{{--    <script>alter('test')</script>--}}
+{{--@endpush--}}
