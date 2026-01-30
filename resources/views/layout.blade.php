@@ -29,6 +29,7 @@
                     <a href="{{route('logout')}}" class="login text-decoration-none">Login</a>
                 </div>
             @endguest
+
     </nav>
     <h1 class="d-flex justify-content-center pt-3">Goods</h1>
 </header>
