@@ -6,14 +6,12 @@
                 <div class="card-body">
                     <h2 class="text-center mb-4 fs-1">Authentication</h2>
                     @error('status')
-                    <div class="invalid-feedback fs-3">
+                    <div class="alert alert-danger fs-2" id="errorMessage">
                         {{$message}}
-                        <br> Wrong email or password
+                       <br> Wrong email or password
                     </div>
                     @enderror
-                    <div class="alert alert-danger fs-2" id="errorMessage">
-                        Wrong email or password
-                    </div>
+
                     <form action="{{route('login.send')}}" method="post" id="loginForm">
                         @csrf
                         <div class="mb-5">
