@@ -1,5 +1,5 @@
 <?php
-
+//9
 use App\Http\Controllers\Panel\AuthController;
 use Illuminate\Support\Facades\Route;
 
