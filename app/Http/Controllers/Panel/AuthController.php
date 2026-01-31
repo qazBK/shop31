@@ -1,5 +1,5 @@
 <?php
-
+//9997
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
@@ -22,7 +22,9 @@ class AuthController extends Controller
     if (auth()->attempt($request->only('email','password')+['is_admin'=>true])){
        return redirect()->route('admin-panel');
     }
-    return redirect()->route('login')->withInput($request->validate())->withErrors([
+    return redirect()->route('login')
+        ->withInput($request
+            ->validated())->withErrors([
         'status'=> 'Неверный email, пароль или отсутствует права администратора'
     ]);
 

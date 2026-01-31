@@ -1,11 +1,12 @@
 <?php
-//9
+
 use App\Http\Controllers\Panel\AuthController;
+use App\Http\Controllers\Panel\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/',[\App\Http\Controllers\Panel\CategoryController::class,'index'])
+    Route::get('/',[CategoryController::class,'index'])
     ->name('admin-panel');
 
     Route::get('/logout', [AuthController::class, 'logout'])
