@@ -2,6 +2,7 @@
 @section('content')
     <div class="container py-5">
         <h1 class="mb-4">Categories</h1>
+        <a href="{{route('categories.create')}}">Создать категорию</a>
         <div class="table-responsive">
             <table class="table table-striped table-hover align-middle fs-5">
                 <thead class="table-light">
