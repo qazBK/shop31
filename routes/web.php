@@ -25,6 +25,14 @@ Route::prefix('admin')->group(function (){
     Route::get('/categories/{category}', function ($category) {
         return view('index');
     });
+    Route::get('/categories/{category}/destroy', [CategoryController::class,'destroy'])
+        ->name('categories.destroy');
+
+    Route::get('/categories/{category}/edit', [CategoryController::class,'edit'])
+        ->name('categories.edit');
+
+    Route::post('/categories/{category}/update', [CategoryController::class,'update'])
+        ->name('categories.update');
 
     Route::get('/login', [AuthController::class, 'login'])
         ->name('login');

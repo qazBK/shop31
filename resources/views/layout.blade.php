@@ -20,12 +20,12 @@
         <a href="orders.html" class="text-primary text-decoration-none">Orders</a>
 
             <div>
-            <a href="{{route('logout')}}" class="login text-decoration-none">Login</a>
+            <a href="{{route('logout')}}" class="login text-decoration-none">Logout</a>
         </div>
         @endauth
         @guest()
             <div>
-                <a href="{{route('logout')}}" class="login text-decoration-none">Login</a>
+                <a href="{{route('login')}}" class="login text-decoration-none">Login</a>
             </div>
         @endguest
     </nav>

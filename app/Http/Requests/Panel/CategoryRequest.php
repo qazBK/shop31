@@ -20,8 +20,8 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:15|regex:/^[a-zA-Z\s\-]+$/u',
-            'description' => 'nullable|max:50|regex:/^[a-zA-Z\s\-\.,:;]+$/u'
+            'title' => 'required|max:15|regex:/^[а-яёА-ЯЁ\s\-]+$/u',
+            'description' => 'nullable|max:50|regex:/^[а-яёА-ЯЁ\s\-\.,:;]+$/u'
         ];
     }
 }

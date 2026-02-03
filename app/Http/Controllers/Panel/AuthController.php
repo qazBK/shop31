@@ -8,35 +8,41 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function login()
-{
-    return view('login');
-}
+    {
+        return view('login');
+    }
 
     /**
      * @param AuthRequest $request
      * @return RedirectResponse
      */
     public function loginSend(AuthRequest $request)
-{
-    if (auth()->attempt($request->only('email','password')+['is_admin'=>true])){
-       return redirect()->route('admin-panel');
+    {
+        if (auth()->attempt($request->only('email', 'password') + ['is_admin' => true])) {
+            return redirect()->route('admin-panel');
+        }
+        return redirect()->route('login')
+            ->withInput($request->validated())
+            ->withErrors([
+                'status' => 'Неверный email, пароль или отсутствует права администратора'
+            ]);
+
     }
-    return redirect()->route('login')
-        ->withInput($request
-            ->validated())->withErrors([
-        'status'=> 'Неверный email, пароль или отсутствует права администратора'
-    ]);
 
-}
+    /**
+     * @return RedirectResponse
+     */
+    public function logout()
+    {
+        //$this->logout()
+        auth()->logout();
 
-public function logout()
-{
-    //$this->logout()
-    auth()->logout();
-
-    return redirect()-> route('login');
-}
+        return redirect()->route('login');
+    }
 
 }
 

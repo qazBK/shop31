@@ -29,7 +29,7 @@ class AuthRequest extends FormRequest
     {
         return[
             'email.required'=> 'Почта обязательна',
-            'email.email'=> 'Введите коррктный email',
+            'email.email'=> 'Введите корректный email',
             'email.min'=> 'min = 5',
             'password.required'=> 'Пороль обязателен',
             ];

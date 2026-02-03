@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\CategoryRequest;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -12,7 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        return view('categories.index',[
+            'categories'=> Category::all(),
+            //'categories'=> Category::query()->get(),
+            ]
+        );
     }
 
     /**
@@ -28,7 +33,10 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        return $request;
+        Category::query()->create($request->validated());
+        return redirect()
+            ->route('admin-panel')
+            -> withInput($request->validated());
     }
 
     /**
@@ -42,9 +50,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+
     }
 
     /**
@@ -58,8 +66,15 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    //public function destroy(string $id)
+    //{
+    //dd($id);
+    //}
+
+    public function destroy(Category $category)
     {
-        //
+        $category-> delete();
+        return redirect()
+            -> route('admin-panel');
     }
 }

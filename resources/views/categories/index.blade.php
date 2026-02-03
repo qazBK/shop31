@@ -15,26 +15,27 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($categories as $category)
                 <tr>
-                    <td>1</td>
-                    <td>Electronic</td>
-                    <td>Technic and electronic devices</td>
-                    <td>1 234</td>
+                    <td>{{$category->id}}</td>
+                    <td>{{$category->title}}</td>
+                    <td>{{$category->description}}</td>
+                    <td>???</td>
                     <td class="text-end">
                         <div class="btn-group" role="group">
                             <a href="category_view.html"  type="button" class="btn btn-lg btn-outline-primary no-reverse">
                                 <img src="{{asset('assets/img/icons/eye.svg')}}" alt="eye" class="action-image">
                             </a>
-                            <a href="add_category.html"  type="button" class="btn btn-lg btn-outline-success no-reverse">
+                            <a href="{{route('categories.edit',$category)}}"  type="button" class="btn btn-lg btn-outline-success no-reverse">
                                 <img src="{{asset('assets/img/icons/pencil.svg')}}" alt="eye" class="action-image">
                             </a>
-                            <a href="" type="button" class="btn btn-lg btn-outline-danger no-reverse">
+                            <a href="{{route('categories.destroy',$category)}}" type="button" class="btn btn-lg btn-outline-danger no-reverse">
                                 <img src="{{asset('assets/img/icons/trash.svg')}}" alt="eye" class="action-image">
                             </a>
                         </div>
                     </td>
                 </tr>
-
+                @endforeach
                 </tbody>
             </table>
         </div>
