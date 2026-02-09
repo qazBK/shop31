@@ -50,17 +50,23 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    /**
+     * @param Category $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function edit(Category $category)
     {
-
+        return view('categories.edit',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Category $category, CategoryRequest $request)
     {
-        //
+        $category->update($request->validated());
+        return redirect()
+            -> route('admin-panel');
     }
 
     /**

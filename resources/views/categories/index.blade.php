@@ -23,7 +23,7 @@
                     <td>???</td>
                     <td class="text-end">
                         <div class="btn-group" role="group">
-                            <a href="category_view.html"  type="button" class="btn btn-lg btn-outline-primary no-reverse">
+                            <a href="{{route('products.index',$category)}}"  type="button" class="btn btn-lg btn-outline-primary no-reverse">
                                 <img src="{{asset('assets/img/icons/eye.svg')}}" alt="eye" class="action-image">
                             </a>
                             <a href="{{route('categories.edit',$category)}}"  type="button" class="btn btn-lg btn-outline-success no-reverse">
