@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\ProductRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -23,17 +24,19 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Category $category)
     {
-        //
+        return view('products.create',compact('category'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Category $category,ProductRequest $request)
     {
-        //
+        $category->products()->create($request->validated() );
+        return redirect()
+            ->route('products.index',['category' => $category,]);
     }
 
     /**

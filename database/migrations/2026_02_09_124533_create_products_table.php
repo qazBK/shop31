@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('price');
+            $table->text('images')->nullable();
             $table->timestamps();
         });
     }

@@ -37,6 +37,14 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/categories/{category}/product', [ProductController::class,'index'])
         ->name('products.index');
+    Route::get('/categories/{category}/product/create', [ProductController::class,'create'])
+        ->name('products.create');
+    Route::post('/categories/{category}/product/create', [ProductController::class,'store'])
+        ->name('products.store');
+
+
+    Route::get('/categories/{category}/product', [ProductController::class,'index'])
+        ->name('products.update');
 
     Route::get('/login', [AuthController::class, 'login'])
         ->name('login');

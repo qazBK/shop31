@@ -3,7 +3,7 @@
     <div class="container py-5">
         <h1 class="mb-4">Goods of category: <span>{{$category->title}}</span></h1>
         <div class="d-flex justify-content-end mb-4">
-            <a href="add_good.html" class="btn btn-primary fs-3">Add good</a>
+            <a href="{{ route('products.create', ['category' => $category]) }}" class="btn btn-primary fs-3">Add good</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-hover align-middle fs-5">
