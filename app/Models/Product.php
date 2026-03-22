@@ -13,4 +13,9 @@ class Product extends Model
         'description',
         'price',
     ];
+
+    public function category()
+    {
+        return $this->hasOne(Category::class,'id','ctegory_id');
+    }
 }

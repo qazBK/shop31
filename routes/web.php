@@ -35,17 +35,24 @@ Route::prefix('admin')->group(function (){
     Route::post('/categories/{category}/edit', [CategoryController::class,'update'])
         ->name('categories.update');
 
-    Route::get('/categories/{category}/product', [ProductController::class,'index'])
+    Route::prefix('/categories/{category}')->name('categories.')->group(function (){
+    Route::get('/product', [ProductController::class,'index'])
         ->name('products.index');
-    Route::get('/categories/{category}/product/create', [ProductController::class,'create'])
+    Route::get('/product/create', [ProductController::class,'create'])
         ->name('products.create');
-    Route::post('/categories/{category}/product/create', [ProductController::class,'store'])
+    Route::post('/product/create', [ProductController::class,'store'])
         ->name('products.store');
+    Route::get('/product/{product}/destroy', [ProductController::class,'destroy'])
+        ->name('products.destroy');
+
+        Route::get('/product/{product}/edit', [ProductController::class,'edit'])
+            ->name('products.edit');
 
 
-    Route::get('/categories/{category}/product', [ProductController::class,'index'])
+
+    Route::post('/product/{product}/edit', [ProductController::class,'update'])
         ->name('products.update');
-
+    });
     Route::get('/login', [AuthController::class, 'login'])
         ->name('login');
 

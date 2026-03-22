@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+
     <section class="container">
         <div class="d-flex flex-column justify-content-center form-container good">
             <div class="card shadow">
@@ -8,10 +9,10 @@
                     <div class="alert alert-danger fs-2" id="errorMessage">
                         All fields is required
                     </div>
-                    <form action="{{route("products.update', $products)}}" method="post" id="addGood" >
+                    <form action="{{ route('categories.products.update', ['category' => $category, 'product' => $product]) }}" method="post" id="addGood" >
                     @csrf
                     @include('products._form',[
-                        'product' => $products
+                        'product' => $product
                         ])
                     <button type="submit" class="btn btn-primary w-100 my-2 fs-2">Save</button>
                     </form>
