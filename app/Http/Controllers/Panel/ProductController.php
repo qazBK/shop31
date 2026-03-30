@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
         $category->products()->create($request->validated() );
         return redirect()
-            ->route('products.index',['category' => $category,]);
+            ->route('categories.products.index',['category' => $category,]);
     }
 
     /**
@@ -51,9 +51,14 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Category $category, Product $product)
     {
-        return view('products.edit',compact('category'));
+        //return $category;
+        //return $product;
+        return view('products.edit', [
+            'product' => $product,  // Убираем compact()
+            'category' => $category, // Убираем compact()
+        ]);
     }
 
     /**

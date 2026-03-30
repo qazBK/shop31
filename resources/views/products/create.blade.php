@@ -8,7 +8,7 @@
                     <div class="alert alert-danger fs-2" id="errorMessage">
                         All fields is required
                     </div>
-                    <form action="{{ route('products.store',$category) }}" method="post" id="addGood">
+                    <form action="{{ route('categories.products.store',$category) }}" method="post" id="addGood">
                     @csrf
                     @include('products._form')
                     <button type="submit" class="btn btn-primary w-100 my-2 fs-2">Add</button>

@@ -14,8 +14,8 @@ class Product extends Model
         'price',
     ];
 
-    public function category()
+    public function products()
     {
-        return $this->hasOne(Category::class,'id','ctegory_id');
+        return $this->hasMany(Product::class,'id','ctegory_id');
     }
 }
