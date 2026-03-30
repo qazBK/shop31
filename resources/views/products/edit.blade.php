@@ -9,7 +9,8 @@
                     <div class="alert alert-danger fs-2" id="errorMessage">
                         All fields is required
                     </div>
-                    <form action="{{ route('categories.products.update',$category, ['product' => $product]) }}" method="post" id="addGood" >
+                    <form enctype="multipart/form-data"
+                          action="{{ route('categories.products.update', ['category' => $category, 'product' => $product]) }}" method="post" id="addGood" >
                     @csrf
                     @include('products._form',[
                         'product' => $product

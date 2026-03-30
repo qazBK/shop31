@@ -49,12 +49,21 @@ Route::prefix('admin')->group(function (){
             ->name('products.edit');
 
 
-
-    Route::post('/product/{product}/edit', [ProductController::class,'update'])
+        Route::post('/product/{product}/edit', [ProductController::class,'update'])
         ->name('products.update');
+
+       /* Route::get('/product/{product}/show', [ProductController::class,'show'])
+            ->name('products.show');*/
+
+
     });
+    Route::get('/product/{product}/show', [ProductController::class,'show'])
+        ->name('products.show');
+
     Route::get('/login', [AuthController::class, 'login'])
         ->name('login');
+    Route::get('/products', [ProductController::class,'list'])
+        ->name('products.list');
 
     Route::post('/loginSend', [AuthController::class, 'loginSend'])
         ->name('login.send');

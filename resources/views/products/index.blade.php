@@ -26,7 +26,7 @@
 
                         <td class="text-end">
                             <div class="btn-group" role="group">
-                                <a href="{{route('categories.products.create', ['category' => $category])}}"  type="button" class="btn btn-lg btn-outline-primary no-reverse">
+                                <a href="{{route('products.show',['category' => $category,'product' => $product])}}"  type="button" class="btn btn-lg btn-outline-primary no-reverse">
                                     <img src="{{asset('assets/img/icons/eye.svg')}}" alt="eye" class="action-image">
                                 </a>
                                 <a href="{{route('categories.products.edit', ['category' => $category,'product' => $product])}}"  type="button" class="btn btn-lg btn-outline-success no-reverse">
@@ -42,5 +42,6 @@
                 </tbody>
             </table>
         </div>
+        {{$products->links()}}
     </div>
 @endsection

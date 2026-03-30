@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Faker\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
@@ -18,7 +20,7 @@ class ProductController extends Controller
         //$category->products()->get();
         return view('products.index',[
            'category' =>$category,
-            'products'=>$category->products,
+            'products'=>$category->products()->paginate(5),
         ]);
     }
 
@@ -33,19 +35,24 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Category $category,ProductRequest $request)
+   public function store(Category $category,ProductRequest $request)
     {
-        $category->products()->create($request->validated() );
+        //return 1;
+        $product = $category->products()->create($request->validated());
+        $product->updateImages($request->file('images'));
         return redirect()
             ->route('categories.products.index',['category' => $category,]);
     }
 
+    // Временно отключите валидацию - замените в контроллере:
+
+
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(/*Category $category,*/Product $product)
     {
-        //
+        return view('products.show',compact('product'));
     }
 
     /**
@@ -64,18 +71,26 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Product $product,ProductRequest $request)
+    public function update(Category $category,Product $product,ProductRequest $request)
     {
         $product->update($request->validated());
-        return redirect()->route('products.index',$product->category);
+        $product->updateImages($request->file('images'));
+        return redirect()->route('categories.products.index',['category' => $category,]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Category $category,Product $product)
     {
        $product->delete();
-        return redirect()->route('products.index',$product->category());
+        return redirect()->route('categories.products.index',['category' => $category,]);
+    }
+
+    public function list(): Factory|View
+    {
+        return view('products.list',[
+            'products'=>Product::query()->orderBy('id','DESC')->paginate(5)
+        ]);
     }
 }

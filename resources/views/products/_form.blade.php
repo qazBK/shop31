@@ -30,10 +30,22 @@
     <div class="invalid-feedback fs-3">{{$message}}</div>
     @enderror
 </div>
-
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="mb-5">
     <label for="productImages" class="form-label">Image(s)</label>
-    <input type="file" class="form-control @error('price') is-invalid @enderror" id="productImages" name="images">
+    <p><small>Первое изоброжение которое вы выберете, будет являтся изоброжением по умолчанию</small></p>
+    <input type="file" class="form-control @error('images') is-invalid @enderror" id="productImages" name="images[]" multiple>
+    @error('images')
+    <div class="invalid-feedback fs-3">{{$message}}</div>
+    @enderror
     <div class="invalid-feedback">
         You can upload up to 5 images.
     </div>
