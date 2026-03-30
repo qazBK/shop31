@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Panel\CategoryRequest;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -11,7 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        return view('categories.index',[
+            'categories'=> Category::all(),
+            //'categories'=> Category::query()->get(),
+            ]
+        );
     }
 
     /**
@@ -19,15 +25,18 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        Category::query()->create($request->validated());
+        return redirect()
+            ->route('admin-panel')
+            -> withInput($request->validated());
     }
 
     /**
@@ -41,24 +50,37 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    /**
+     * @param Category $category
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Category $category, CategoryRequest $request)
     {
-        //
+        $category->update($request->validated());
+        return redirect()
+            -> route('admin-panel');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    //public function destroy(string $id)
+    //{
+    //dd($id);
+    //}
+
+    public function destroy(Category $category)
     {
-        //
+        $category-> delete();
+        return redirect()
+            -> route('admin-panel');
     }
 }

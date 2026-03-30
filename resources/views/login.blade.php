@@ -6,19 +6,18 @@
                 <div class="card-body">
                     <h2 class="text-center mb-4 fs-1">Authentication</h2>
                     @error('status')
-                    <div class="invalid-feedback fs-3">
+                    <div class="alert alert-danger fs-2" id="errorMessage">
                         {{$message}}
-                        <br> Wrong email or password
                     </div>
                     @enderror
-                    <div class="alert alert-danger fs-2" id="errorMessage">
-                        Wrong email or password
-                    </div>
+
                     <form action="{{route('login.send')}}" method="post" id="loginForm">
                         @csrf
                         <div class="mb-5">
                             <label for="email" class="form-label fs-2">Email</label>
-                            <input type="email" class="form-control fs-2 @error('email') is-invalid @enderror" id="email" name="email" value="{{old('email')}}"
+                            <input type="email" class="form-control fs-2 @error('email') is-invalid @enderror"
+                                   id="email"
+                                   name="email" value="{{old('email')}}"
                                    placeholder="Enter your email">
                             @error('email')
                             <div class="invalid-feedback fs-3">
@@ -28,7 +27,8 @@
                         </div>
                         <div class="mb-5">
                             <label for="password" class="form-label fs-2">Password</label>
-                            <input type="password" class="form-control fs-2 @error('password') is-invalid @enderror" id="password" name="password"
+                            <input type="password" class="form-control fs-2 @error('password') is-invalid @enderror"
+                                   id="password" name="password"
                                    placeholder="Enter password">
                             @error('password')
                             <div class="invalid-feedback fs-3">
